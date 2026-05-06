@@ -1,0 +1,161 @@
+/* ===== PEOPLE FIRST FOUNDATION - GLOBAL STYLES ===== */
+
+/* ----- Custom Properties ----- */
+:root {
+  --color-navy: #0a1f3f;
+  --color-navy-light: #132d5c;
+  --color-gold: #c8963e;
+  --color-gold-light: #e0b86e;
+  --color-white: #ffffff;
+  --color-off-white: #f8f6f0;
+  --color-gray-light: #e8e6e1;
+  --color-gray: #6b6b6b;
+  --color-black: #1a1a1a;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+  --max-width: 1200px;
+}
+
+/* ----- Reset ----- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-navy);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+ul {
+  list-style: none;
+}
+
+/* ----- Typography ----- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-navy);
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+h4 { font-size: 1.2rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* ----- Utility Classes ----- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-alt {
+  background-color: var(--color-off-white);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold-light);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(200, 150, 62, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn-donate {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  font-size: 1.05rem;
+  padding: 1rem 2.5rem;
+}
+
+.btn-donate:hover {
+  background-color: #b8862c;
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 150, 62, 0.4);
+}
+
+/* ----- Page Header (for inner pages) ----- */
+.page-header {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  color: var(--color-white);
+}
+
+.page-header p {
+  color: var(--color-gray-light);
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}

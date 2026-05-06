@@ -1,0 +1,84 @@
+{
+  "facebook": "",
+  "x": "",
+  "linkedin": "",
+  "tiktok": "",
+  "instagram": "",
+  "youtube": "",
+  "whatsapp": "",
+  "stats": [
+    { "number": "32+", "label": "Children at Umoza Academy" },
+    { "number": "Nationwide", "label": "Birthing Kit Distribution" },
+    { "number": "3", "label": "Core Programs Running" }
+  ],
+  "methods": [
+    {
+      "type": "bank",
+      "label": "Bank Transfer",
+      "active": false,
+      "mobileType": "",
+      "details": {
+        "bankName": "National Bank of Malawi",
+        "accountName": "People First Foundation",
+        "accountNumber": "1234567890",
+        "swiftCode": "NBMAMWMW",
+        "branch": "Lilongwe Main Branch",
+        "provider": "",
+        "phoneNumber": "",
+        "agentCode": "",
+        "paymentLink": ""
+      }
+    },
+    {
+      "type": "mobile",
+      "label": "Airtel Money",
+      "active": false,
+      "mobileType": "phone",
+      "details": {
+        "bankName": "",
+        "accountName": "People First Foundation",
+        "accountNumber": "",
+        "swiftCode": "",
+        "branch": "",
+        "provider": "Airtel Money",
+        "phoneNumber": "+265 999 000 111",
+        "agentCode": "",
+        "paymentLink": ""
+      }
+    },
+    {
+      "type": "mobile",
+      "label": "TNM Mpamba",
+      "active": false,
+      "mobileType": "agent",
+      "details": {
+        "bankName": "",
+        "accountName": "People First Foundation",
+        "accountNumber": "",
+        "swiftCode": "",
+        "branch": "",
+        "provider": "TNM Mpamba",
+        "phoneNumber": "",
+        "agentCode": "MPAMBA-12345",
+        "paymentLink": ""
+      }
+    },
+    {
+      "type": "paychangu",
+      "label": "PayChangu (Online Payment)",
+      "active": false,
+      "mobileType": "",
+      "details": {
+        "bankName": "",
+        "accountName": "",
+        "accountNumber": "",
+        "swiftCode": "",
+        "branch": "",
+        "provider": "",
+        "phoneNumber": "",
+        "agentCode": "",
+        "paymentLink": ""
+      }
+    }
+  ]
+}

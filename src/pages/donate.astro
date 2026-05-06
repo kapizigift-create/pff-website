@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const settingsEntries = await getCollection('siteSettings');
+const settingsData = settingsEntries[0]?.data;
+const paymentMethods = (settingsData?.methods || []).filter((m) => m.active);
+---
+
+<BaseLayout title="Donate" description="Support vulnerable communities in Malawi. Your donation helps feed children, empower women, and restore dignity.">
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Donate</h1>
+      <p>Your generosity transforms lives across Malawi</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="donate-intro">
+        <h2>Make a Difference Today</h2>
+        <p>Every contribution, no matter the size, goes directly toward programs that uplift vulnerable children, women, and families in Malawi. Your support helps us:</p>
+        <ul class="donate-list">
+          <li>🍎 Feed a child at Umoza Academy through our school feeding program</li>
+          <li>📚 Provide quality early childhood education to underprivileged children</li>
+          <li>🩺 Distribute birthing kits that promote safe childbirth and dignity</li>
+          <li>👩‍👧 Empower widows and single mothers with livelihood skills</li>
+        </ul>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="payment-section">
+        {paymentMethods.length > 0 ? (
+          <>
+            <h2 style="text-align:center; margin-bottom:2rem;">Ways to Give</h2>
+            <div class="payment-grid">
+              {paymentMethods.map((method) => (
+                <div class={`payment-card payment-${method.type}`}>
+                  <div class="payment-header">
+                    <span class="payment-icon">
+                      {method.type === 'bank' && '🏦'}
+                      {method.type === 'mobile' && '📱'}
+                      {method.type === 'paychangu' && '💳'}
+                    </span>
+                    <h3>{method.label}</h3>
+                  </div>
+                  <div class="payment-details">
+                    {method.type === 'bank' && (
+                      <table class="payment-table">
+                        <tbody>
+                          {method.details.bankName && (
+                            <tr><td class="label">Bank</td><td>{method.details.bankName}</td></tr>
+                          )}
+                          {method.details.accountName && (
+                            <tr><td class="label">Account Name</td><td>{method.details.accountName}</td></tr>
+                          )}
+                          {method.details.accountNumber && (
+                            <tr><td class="label">Account Number</td><td class="highlight">{method.details.accountNumber}</td></tr>
+                          )}
+                          {method.details.swiftCode && (
+                            <tr><td class="label">SWIFT Code</td><td class="highlight">{method.details.swiftCode}</td></tr>
+                          )}
+                          {method.details.branch && (
+                            <tr><td class="label">Branch</td><td>{method.details.branch}</td></tr>
+                          )}
+                        </tbody>
+                      </table>
+                    )}
+
+                     {method.type === 'mobile' && (
+                      <table class="payment-table">
+                        <tbody>
+                          {method.details.provider && (
+                            <tr><td class="label">Provider</td><td>{method.details.provider}</td></tr>
+                          )}
+                          {method.details.accountName && (
+                            <tr><td class="label">Account Name</td><td>{method.details.accountName}</td></tr>
+                          )}
+                          {method.mobileType === 'phone' && method.details.phoneNumber && (
+                            <tr><td class="label">Phone Number</td><td class="highlight">{method.details.phoneNumber}</td></tr>
+                          )}
+                          {method.mobileType === 'agent' && method.details.agentCode && (
+                            <tr><td class="label">Agent / Merchant Code</td><td class="highlight">{method.details.agentCode}</td></tr>
+                          )}
+                        </tbody>
+                      </table>
+                    )}
+
+                    {method.type === 'paychangu' && method.details.paymentLink && (
+                      <a href={method.details.paymentLink} class="btn btn-donate" target="_blank" rel="noopener">
+                        Pay with Card or Mobile Money →
+                      </a>
+                    )}
+                    {method.type === 'paychangu' && !method.details.paymentLink && (
+                      <p style="color: var(--color-gray); font-style: italic;">Payment link coming soon.</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div class="donate-placeholder">
+            <h3>Online Donations Coming Soon</h3>
+            <p>We are setting up our payment systems to make giving easy and secure. Check back shortly or contact us directly to make a donation.</p>
+            <p style="margin-top:1rem;">
+              <strong>Email:</strong> info@peoplefirstfoundation.org
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .donate-intro {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+  .donate-list {
+    list-style: none;
+    margin-top: 1rem;
+  }
+  .donate-list li {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  }
+  .payment-section {
+    margin-top: 2rem;
+  }
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .payment-card {
+    background: var(--color-off-white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-top: 4px solid var(--color-gold);
+  }
+  .payment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .payment-icon {
+    font-size: 1.8rem;
+  }
+  .payment-header h3 {
+    color: var(--color-navy);
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .payment-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .payment-table td {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--color-gray-light);
+  }
+  .payment-table .label {
+    color: var(--color-gray);
+    width: 40%;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  .payment-table .highlight {
+    font-family: monospace;
+    font-weight: 700;
+    color: var(--color-navy);
+    letter-spacing: 0.5px;
+  }
+  .payment-card.payment-paychangu {
+    text-align: center;
+    border-top-color: #635bff;
+  }
+  .payment-card.payment-mobile {
+    border-top-color: #25d366;
+  }
+  .donate-placeholder {
+    background: var(--color-navy);
+    color: white;
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .donate-placeholder h3 {
+    color: var(--color-gold-light);
+    margin-bottom: 0.5rem;
+  }
+  .donate-placeholder p {
+    color: rgba(255,255,255,0.8);
+  }
+  @media (max-width: 700px) {
+    .payment-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

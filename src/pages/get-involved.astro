@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Get Involved" description="Volunteer, partner, or participate in community events with People First Foundation in Malawi.">
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Get Involved</h1>
+      <p>Join us in building a just and inclusive Malawi</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="involve-grid">
+        <div class="involve-card">
+          <div class="involve-icon">🤝</div>
+          <h3>Volunteer With Us</h3>
+          <p>Give your time and skills to support our programs. Whether you can help at Umoza Academy, assist with birthing kit distributions, or contribute your professional expertise, we welcome you.</p>
+          <a href="/contact" class="btn btn-secondary">Contact Us to Volunteer</a>
+        </div>
+        <div class="involve-card">
+          <div class="involve-icon">💛</div>
+          <h3>Make a Donation</h3>
+          <p>Your financial support directly funds education for vulnerable children, birthing kits for expectant mothers, and livelihood programs for struggling families.</p>
+          <a href="/donate" class="btn btn-donate">Donate Now</a>
+        </div>
+        <div class="involve-card">
+          <div class="involve-icon">⚽</div>
+          <h3>Join Community Events</h3>
+          <p>We host football tournaments, car wash fundraisers, and other community events. Come participate, compete, and support a good cause.</p>
+          <a href="/news" class="btn btn-secondary">See Upcoming Events</a>
+        </div>
+        <div class="involve-card">
+          <div class="involve-icon">🏛️</div>
+          <h3>Become a Partner</h3>
+          <p>Is your organisation aligned with our mission? We actively seek strategic partnerships to expand our reach and deepen our impact across Malawi.</p>
+          <a href="/contact" class="btn btn-secondary">Partner With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .involve-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .involve-card {
+    background: var(--color-off-white);
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .involve-icon {
+    font-size: 2.5rem;
+  }
+  .involve-card h3 {
+    color: var(--color-navy);
+  }
+  .involve-card p {
+    color: #444;
+    flex: 1;
+  }
+  @media (max-width: 650px) {
+    .involve-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

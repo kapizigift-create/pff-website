@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const newsItems = await getCollection('news');
+newsItems.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="News & Stories" description="Latest updates, impact stories, and community events from People First Foundation in Malawi.">
+
+  <section class="page-header">
+    <div class="container">
+      <h1>News & Stories</h1>
+      <p>Updates from the field, impact stories, and upcoming events</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {newsItems.length > 0 ? (
+        <div class="news-grid">
+          {newsItems.map((item) => (
+            <article class="news-card">
+              <div class="news-img-placeholder">
+                {item.data.image ? <img src={item.data.image} alt={item.data.title} /> : `Image: ${item.data.title}`}
+              </div>
+              <div class="news-body">
+                <span class="news-date">{item.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                <h3>{item.data.title}</h3>
+                <p>{item.data.excerpt}</p>
+                <a href={`/news/${item.id}`}>Read More →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p style="text-align:center;">No news stories yet. Check back soon!</p>
+      )}
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .news-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .news-img-placeholder {
+    height: 180px;
+    background: var(--color-gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray);
+    font-size: 0.85rem;
+  }
+  .news-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .news-body {
+    padding: 1.5rem;
+  }
+  .news-date {
+    font-size: 0.8rem;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  .news-body h3 {
+    margin: 0.4rem 0;
+    font-size: 1.1rem;
+  }
+  .news-body p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.8rem;
+  }
+  .news-body a {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 800px) {
+    .news-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .news-grid { grid-template-columns: 1fr; }
+  }
+</style>

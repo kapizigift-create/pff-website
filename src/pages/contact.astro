@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact Us" description="Get in touch with People First Foundation in Malawi. Volunteer, partner, or learn more about our work.">
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We would love to hear from you</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div>
+        <h2>Get In Touch</h2>
+        <p>Whether you want to volunteer, partner with us, donate, or simply learn more about our work, reach out using the form or the contact details below.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <strong>📍 Location</strong>
+            <span>Lusangazi</span>
+            <span>Mzuzu, Malawi</span>            
+          </div>
+          <div class="contact-item">
+            <strong>📧 Email</strong>
+            <span>info@pffmw.org</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form
+  class="contact-form"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/contact/success"
+>
+  <!-- Hidden fields required for Netlify -->
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden" style="display: none;">
+    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+  </p>
+
+  <label>
+    Your Name
+    <input type="text" name="name" required placeholder="Enter your full name" />
+  </label>
+  <label>
+    Email Address
+    <input type="email" name="email" required placeholder="Enter your email" />
+  </label>
+  <label>
+    Subject
+    <input type="text" name="subject" placeholder="What is this about?" />
+  </label>
+  <label>
+    Message
+    <textarea name="message" rows="5" required placeholder="Tell us how we can help or get involved..."></textarea>
+  </label>
+  <button type="submit" class="btn btn-donate">Send Message</button>
+</form>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .contact-details {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-item strong {
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .contact-form {
+    background: var(--color-off-white);
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-form label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-navy);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.7rem;
+    border: 1px solid var(--color-gray-light);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid var(--color-gold);
+    border-color: transparent;
+  }
+  @media (max-width: 700px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>

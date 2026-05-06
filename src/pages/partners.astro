@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const partners = await getCollection('partners');
+partners.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Our Partners" description="Meet the strategic partners collaborating with People First Foundation to empower communities across Malawi.">
+
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Partners</h1>
+      <p>Collaborating for greater impact</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="partner-main">
+        {partners.map((partner) => (
+          <div class="partner-feature">
+            <div class="partner-logo-placeholder">{partner.data.logo || partner.data.name}</div>
+            <div>
+              <h3>{partner.data.name}</h3>
+              <p>{partner.data.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="partner-cta">
+        <h2>Become a Partner</h2>
+        <p>We are always open to new strategic partnerships that advance our mission. If your organisation shares our vision for a just and inclusive Malawi, we would love to hear from you.</p>
+        <a href="/contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .partner-main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .partner-feature {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    align-items: center;
+    background: var(--color-off-white);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  .partner-logo-placeholder {
+    background: white;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--color-gray);
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .partner-cta {
+    margin-top: 4rem;
+    text-align: center;
+    background: var(--color-navy);
+    color: white;
+    padding: 3rem;
+    border-radius: 8px;
+  }
+  .partner-cta h2 {
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  .partner-cta p {
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+    color: rgba(255,255,255,0.8);
+  }
+  @media (max-width: 600px) {
+    .partner-feature {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

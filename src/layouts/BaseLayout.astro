@@ -1,0 +1,343 @@
+---
+// src/layouts/BaseLayout.astro
+import SocialIcons from '../components/SocialIcons.astro';
+import { getCollection } from 'astro:content';
+
+const allPrograms = await getCollection('programs');
+const programs = allPrograms.filter((p) => p.data.active !== false);
+programs.sort((a, b) => a.data.order - b.data.order);
+const { title = "People First Foundation", description = "Empowering vulnerable communities across Malawi" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <title>{title} — PFF Malawi</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body>
+  <!-- Skip to Main Content (Accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="/" class="logo-link">
+  <img src="/images/pff-logo.png" alt="People First Foundation — Malawi" class="logo-img" />
+  <span class="logo-sub">People First Foundation</span>
+</a>
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li class="dropdown">
+            <a href="/what-we-do">What We Do</a>
+            <ul class="dropdown-menu">
+              <li><a href="/what-we-do/umoza-village">Umoza Village Project</a></li>
+              <li><a href="/what-we-do/umoza-academy">Umoza Academy</a></li>
+              <li><a href="/what-we-do/birthing-kits">Birthing Kit Program</a></li>
+            </ul>
+          </li>
+          <li><a href="/partners">Our Partners</a></li>
+          <li><a href="/get-involved">Get Involved</a></li>
+          <li><a href="/news">News & Stories</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="/donate" class="btn btn-donate nav-donate">Donate</a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <h4>People First Foundation</h4>
+        <p>A registered non-profit organisation in Malawi, committed to people-centered and inclusive development for vulnerable communities.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/what-we-do">Our Work</a></li>
+          <li><a href="/partners">Partners</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-programs">
+        <h4>Our Programs</h4>
+        <ul>
+          <li><a href="/what-we-do/umoza-village">Umoza Village Project</a></li>
+          <li><a href="/what-we-do/umoza-academy">Umoza Academy</a></li>
+          <li><a href="/what-we-do/birthing-kits">Birthing Kit Program</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>People First Foundation</p>
+        <p>Lusangazi, Mzuzu</p>
+        <p>Malawi</p>
+        <p>Phone: +265 997 99 04 65 / +265 998 46 32 33</p>
+        <p>Email: info@pffmw.org</p>
+        <SocialIcons />
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} People First Foundation. All rights reserved. Registered NGO — Malawi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.getElementById('mobile-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      toggle.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
+
+<style>
+  /* ----- Skip Link ----- */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--color-gold);
+    color: white;
+    padding: 0.5rem 1rem;
+    z-index: 1000;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* ----- Site Header ----- */
+  .site-header {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+  .logo-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+  .logo-img {
+  height: 65px;
+  width: 65px;
+}
+.logo-sub {
+  font-size: 0.7rem;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+  .logo-sub {
+    font-size: 0.7rem;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .main-nav .nav-list {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .main-nav a {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--color-navy);
+  }
+  .main-nav a:hover {
+    color: var(--color-gold);
+  }
+  .dropdown {
+    position: relative;
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 220px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all 0.2s ease;
+  }
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+  }
+  .nav-donate {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+  }
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .mobile-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--color-navy);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* ----- Site Footer ----- */
+  .site-footer {
+    background-color: var(--color-navy);
+    color: var(--color-gray-light);
+    padding-top: 4rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
+  .site-footer h4 {
+    color: var(--color-white);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .site-footer a {
+    color: var(--color-gray-light);
+    font-size: 0.9rem;
+  }
+  .site-footer a:hover {
+    color: var(--color-gold-light);
+  }
+  .site-footer ul li {
+    margin-bottom: 0.4rem;
+  }
+  .social-links {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+  }
+  .social-links a {
+    background: rgba(255,255,255,0.1);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem 0;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  /* ----- Responsive ----- */
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 768px) {
+    .main-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 350px;
+      height: 100vh;
+      background: white;
+      padding: 5rem 2rem 2rem;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+    }
+    .main-nav.active {
+      right: 0;
+    }
+    .main-nav .nav-list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      padding-left: 1rem;
+    }
+    .nav-donate {
+      display: none;
+    }
+    .mobile-toggle {
+      display: flex;
+      z-index: 1001;
+    }
+    .mobile-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px,5px);
+    }
+    .mobile-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px,-5px);
+    }
+  }
+  @media (max-width: 500px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

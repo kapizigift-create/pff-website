@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About Us" description="Learn about People First Foundation's mission, vision, and commitment to people-centered development in Malawi.">
+
+  <section class="page-header">
+    <div class="container">
+      <h1>About Us</h1>
+      <p>Placing people at the center of every intervention</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-grid">
+      <div>
+        <h2>Who We Are</h2>
+        <p>People First Foundation (PFF) is a registered non-profit, non-governmental, and voluntary organization operating in Malawi. Established over a year ago, the Foundation is committed to advancing people-centered and inclusive development, with a strong focus on vulnerable populations including children, women, and marginalized communities.</p>
+        <p>The Foundation was formed on the belief that sustainable development is best achieved when people are placed at the center of all interventions, and when communities are empowered to actively shape their own future.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="vision-box">
+          <h3>Our Vision</h3>
+          <p>A self-reliant, just, and inclusive society where people—especially children, women, and vulnerable communities—are empowered to realize their full potential and actively shape their own development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:2rem;">Our Core Values</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <h4>People-Centered Development</h4>
+          <p>Communities drive their own change.</p>
+        </div>
+        <div class="value-card">
+          <h4>Equity & Inclusion</h4>
+          <p>No one is left behind.</p>
+        </div>
+        <div class="value-card">
+          <h4>Integrity & Accountability</h4>
+          <p>Transparency in everything we do.</p>
+        </div>
+        <div class="value-card">
+          <h4>Participation & Empowerment</h4>
+          <p>Active involvement at every level.</p>
+        </div>
+        <div class="value-card">
+          <h4>Respect & Dignity</h4>
+          <p>Every person deserves honour.</p>
+        </div>
+        <div class="value-card">
+          <h4>Sustainability</h4>
+          <p>Building lasting, not temporary, solutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:2rem;">Leadership & Governance</h2>
+      <p style="max-width:700px; margin:0 auto 2rem; text-align:center;">The Foundation operates under a formal constitution ensuring clear leadership, transparency, and strong financial management.</p>
+      <div class="gov-grid">
+        <div class="gov-card"><strong>Founder & Executive Director</strong></div>
+        <div class="gov-card"><strong>Programs Manager</strong></div>
+        <div class="gov-card"><strong>Director of Strategy and Institutional Development</strong></div>
+        <div class="gov-card"><strong>Project Managers</strong></div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <p><strong>Safeguarding:</strong> We uphold strict child protection policies, gender equity practices, and ethical conduct mechanisms.</p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+  }
+  .vision-box {
+    background: var(--color-navy);
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  .vision-box h3 {
+    color: var(--color-gold-light);
+    margin-bottom: 0.5rem;
+  }
+  .vision-box p {
+    color: rgba(255,255,255,0.9);
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .value-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+  .value-card h4 {
+    color: var(--color-gold);
+    margin-bottom: 0.3rem;
+  }
+  .gov-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .gov-card {
+    background: var(--color-off-white);
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .values-grid { grid-template-columns: 1fr; }
+    .gov-grid { grid-template-columns: 1fr; }
+  }
+</style>
