@@ -1,7 +1,8 @@
 ---
 // src/layouts/BaseLayout.astro
-import SocialIcons from '../components/SocialIcons.astro';
+---
 import { getCollection } from 'astro:content';
+import '../styles/global.css';
 
 const allPrograms = await getCollection('programs');
 const programs = allPrograms.filter((p) => p.data.active !== false);
@@ -22,7 +23,7 @@ const { title = "People First Foundation", description = "Empowering vulnerable 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/src/styles/global.css" />
+  
 </head>
 <body>
   <!-- Skip to Main Content (Accessibility) -->
