@@ -1,6 +1,4 @@
 ---
-// src/layouts/BaseLayout.astro
----
 import { getCollection } from 'astro:content';
 import '../styles/global.css';
 
@@ -41,13 +39,13 @@ const { title = "People First Foundation", description = "Empowering vulnerable 
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
           <li class="dropdown">
-            <a href="/what-we-do">What We Do</a>
-            <ul class="dropdown-menu">
-              <li><a href="/what-we-do/umoza-village">Umoza Village Project</a></li>
-              <li><a href="/what-we-do/umoza-academy">Umoza Academy</a></li>
-              <li><a href="/what-we-do/birthing-kits">Birthing Kit Program</a></li>
-            </ul>
-          </li>
+  <a href="/what-we-do">What We Do</a>
+  <ul class="dropdown-menu">
+    {programs.map((program) => (
+      <li><a href={`/what-we-do/${program.id}`}>{program.data.name}</a></li>
+    ))}
+  </ul>
+</li>
           <li><a href="/partners">Our Partners</a></li>
           <li><a href="/get-involved">Get Involved</a></li>
           <li><a href="/news">News & Stories</a></li>
@@ -84,13 +82,13 @@ const { title = "People First Foundation", description = "Empowering vulnerable 
         </ul>
       </div>
       <div class="footer-programs">
-        <h4>Our Programs</h4>
-        <ul>
-          <li><a href="/what-we-do/umoza-village">Umoza Village Project</a></li>
-          <li><a href="/what-we-do/umoza-academy">Umoza Academy</a></li>
-          <li><a href="/what-we-do/birthing-kits">Birthing Kit Program</a></li>
-        </ul>
-      </div>
+  <h4>Our Programs</h4>
+  <ul>
+    {programs.map((program) => (
+      <li><a href={`/what-we-do/${program.id}`}>{program.data.name}</a></li>
+    ))}
+  </ul>
+</div>
       <div class="footer-contact">
         <h4>Contact Us</h4>
         <p>People First Foundation</p>
