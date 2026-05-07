@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import '../styles/global.css';
+import SocialIcons from '../components/SocialIcons.astro';
 
 const allPrograms = await getCollection('programs');
 const programs = allPrograms.filter((p) => p.data.active !== false);
