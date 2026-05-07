@@ -6,98 +6,53 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-      - name: "settings"
+  - name: "settings"
     label: "Site Settings"
     files:
-      - label: "Social Media Links"
-        name: "social"
-        file: "src/content/settings/social.json"
+      - label: "Site Settings"
+        name: "site-settings"
+        file: "src/content/site-settings.json"
         fields:
-          - { label: "Facebook URL", name: "facebook", widget: "string", required: false, hint: "Full URL starting with https://" }
-          - { label: "X (Twitter) URL", name: "x", widget: "string", required: false }
-          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
-          - { label: "TikTok URL", name: "tiktok", widget: "string", required: false }
-          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
-          - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
-          - { label: "WhatsApp URL", name: "whatsapp", widget: "string", required: false, hint: "Use https://wa.me/ followed by phone number" }
-
-      - label: "Impact Statistics"
-        name: "impacts"
-        file: "src/content/settings/impacts.json"
-        fields:
-          - label: "Stats"
+          - label: "Social Media"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Facebook URL", name: "facebook", widget: "string", required: false, hint: "Full URL starting with https://" }
+              - { label: "X (Twitter) URL", name: "x", widget: "string", required: false }
+              - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+              - { label: "TikTok URL", name: "tiktok", widget: "string", required: false }
+              - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+              - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
+              - { label: "WhatsApp URL", name: "whatsapp", widget: "string", required: false, hint: "Use https://wa.me/ followed by phone number" }
+          - label: "Impact Stats"
             name: "stats"
             widget: "list"
             summary: "{{number}} - {{label}}"
             fields:
-              - { label: "Number", name: "number", widget: "string", hint: "e.g., 32+, 500, Nationwide" }
-              - { label: "Label", name: "label", widget: "string", hint: "e.g., Children at Umoza Academy" }
-
-      - label: "Payment Methods"
-        name: "payments"
-        file: "src/content/settings/payments.json"
-        fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
           - label: "Payment Methods"
             name: "methods"
             widget: "list"
-            summary: "{{label}} - {{active}}"
-            types:
-              - label: "Bank Transfer"
-                name: "bank"
-                widget: "object"
-                fields:
-                  - { label: "Label", name: "label", widget: "hidden", default: "Bank Transfer" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "bank" }
-                  - { label: "Active", name: "active", widget: "boolean", default: true }
-                  - label: "Details"
-                    name: "details"
-                    widget: "object"
-                    fields:
-                      - { label: "Bank Name", name: "bankName", widget: "string" }
-                      - { label: "Account Name", name: "accountName", widget: "string" }
-                      - { label: "Account Number", name: "accountNumber", widget: "string" }
-                      - { label: "SWIFT Code", name: "swiftCode", widget: "string" }
-                      - { label: "Branch", name: "branch", widget: "string" }
-                            - label: "Mobile Money"
-                name: "mobile"
-                widget: "object"
-                fields:
-                  - { label: "Label", name: "label", widget: "string", hint: "e.g., Airtel Money or TNM Mpamba" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "mobile" }
-                  - { label: "Active", name: "active", widget: "boolean", default: true }
-                  - { label: "Display As", name: "mobileType", widget: "select", options: ["phone", "agent"], default: "phone", hint: "Show phone number OR agent/merchant code" }
-                  - label: "Details"
-                    name: "details"
-                    widget: "object"
-                    fields:
-                      - { label: "Provider Name", name: "provider", widget: "string", hint: "e.g., Airtel Money, TNM Mpamba" }
-                      - { label: "Account Name", name: "accountName", widget: "string" }
-                      - { label: "Phone Number", name: "phoneNumber", widget: "string", required: false, hint: "Shown when Display As is set to Phone" }
-                      - { label: "Agent / Merchant Code", name: "agentCode", widget: "string", required: false, hint: "Shown when Display As is set to Agent" }
-              - label: "PayChangu"
-                name: "paychangu"
-                widget: "object"
-                fields:
-                  - { label: "Label", name: "label", widget: "hidden", default: "PayChangu (Online Payment)" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "paychangu" }
-                  - { label: "Active", name: "active", widget: "boolean", default: false }
-                  - label: "Details"
-                    name: "details"
-                    widget: "object"
-                    fields:
-                      - { label: "Payment Link", name: "paymentLink", widget: "string", hint: "The full PayChangu payment URL" }
-
-      - label: "Impact Statistics"
-        name: "impacts"
-        file: "src/content/settings/impacts.json"
-        fields:
-          - label: "Stats"
-            name: "stats"
-            widget: "list"
-            summary: "{{number}} - {{label}}"
+            summary: "{{label}}"
             fields:
-              - { label: "Number", name: "number", widget: "string", hint: "e.g., 32+, 500, Nationwide" }
-              - { label: "Label", name: "label", widget: "string", hint: "e.g., Children at Umoza Academy" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Active", name: "active", widget: "boolean", default: true }
+              - { label: "Type", name: "type", widget: "select", options: ["bank", "mobile", "paychangu"] }
+              - { label: "Mobile Display As", name: "mobileType", widget: "select", options: ["phone", "agent"], default: "phone", required: false }
+              - label: "Details"
+                name: "details"
+                widget: "object"
+                fields:
+                  - { label: "Bank Name", name: "bankName", widget: "string", required: false }
+                  - { label: "Account Name", name: "accountName", widget: "string", required: false }
+                  - { label: "Account Number", name: "accountNumber", widget: "string", required: false }
+                  - { label: "SWIFT Code", name: "swiftCode", widget: "string", required: false }
+                  - { label: "Branch", name: "branch", widget: "string", required: false }
+                  - { label: "Provider", name: "provider", widget: "string", required: false }
+                  - { label: "Phone Number", name: "phoneNumber", widget: "string", required: false }
+                  - { label: "Agent Code", name: "agentCode", widget: "string", required: false }
+                  - { label: "Payment Link", name: "paymentLink", widget: "string", required: false }
 
   - name: "programs"
     label: "Programs"
@@ -114,7 +69,7 @@ collections:
       - { label: "Order", name: "order", widget: "number", default: 10, value_type: "int" }
       - { label: "Active", name: "active", widget: "boolean", default: true, hint: "Uncheck to move to Past Programs" }
       - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Full Content", name: "body", widget: "markdown", hint: "Use headings, bullet points, and bold text for the full program page." }
+      - { label: "Full Content", name: "body", widget: "markdown" }
 
   - name: "partners"
     label: "Partners"
