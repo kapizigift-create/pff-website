@@ -7,38 +7,39 @@ public_folder: "/images/uploads"
 collections:
   - name: "settings"
     label: "Site Settings"
+    editor:
+      preview: false
     files:
       - label: "Site Settings"
         name: "site-settings"
         file: "src/content/site-settings.json"
         fields:
-          - label: "Social Media"
+          - label: "Social Media Links"
             name: "social"
             widget: "object"
+            collapsed: false
             fields:
-              - { label: "Facebook URL", name: "facebook", widget: "string", required: false, hint: "Full URL starting with https://" }
+              - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
               - { label: "X (Twitter) URL", name: "x", widget: "string", required: false }
               - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
               - { label: "TikTok URL", name: "tiktok", widget: "string", required: false }
               - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
               - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
-              - { label: "WhatsApp URL", name: "whatsapp", widget: "string", required: false, hint: "Use https://wa.me/ followed by phone number" }
-          - label: "Impact Stats"
+              - { label: "WhatsApp URL", name: "whatsapp", widget: "string", required: false }
+          - label: "Impact Statistics"
             name: "stats"
             widget: "list"
-            summary: "{{number}} - {{label}}"
             fields:
               - { label: "Number", name: "number", widget: "string" }
               - { label: "Label", name: "label", widget: "string" }
           - label: "Payment Methods"
             name: "methods"
             widget: "list"
-            summary: "{{label}}"
             fields:
               - { label: "Label", name: "label", widget: "string" }
               - { label: "Active", name: "active", widget: "boolean", default: true }
               - { label: "Type", name: "type", widget: "select", options: ["bank", "mobile", "paychangu"] }
-              - { label: "Mobile Display As", name: "mobileType", widget: "select", options: ["phone", "agent"], default: "phone", required: false }
+              - { label: "Mobile Display", name: "mobileType", widget: "select", options: ["phone", "agent"], required: false }
               - label: "Details"
                 name: "details"
                 widget: "object"
@@ -55,7 +56,6 @@ collections:
 
   - name: "programs"
     label: "Programs"
-    label_singular: "Program"
     folder: "src/content/programs"
     create: true
     slug: "{{slug}}"
@@ -65,14 +65,13 @@ collections:
       - { label: "Program Name", name: "name", widget: "string" }
       - { label: "Tagline", name: "tagline", widget: "string" }
       - { label: "Short Description", name: "description", widget: "text" }
-      - { label: "Order", name: "order", widget: "number", default: 10, value_type: "int" }
-      - { label: "Active", name: "active", widget: "boolean", default: true, hint: "Uncheck to move to Past Programs" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Full Content", name: "body", widget: "markdown" }
+      - { label: "Order", name: "order", widget: "number", default: 10 }
+      - { label: "Active", name: "active", widget: "boolean", default: true }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
 
   - name: "partners"
     label: "Partners"
-    label_singular: "Partner"
     folder: "src/content/partners"
     create: true
     slug: "{{slug}}"
@@ -83,11 +82,10 @@ collections:
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Logo", name: "logo", widget: "image", required: false }
       - { label: "Website", name: "website", widget: "string", required: false }
-      - { label: "Order", name: "order", widget: "number", default: 10, value_type: "int" }
+      - { label: "Order", name: "order", widget: "number", default: 10 }
 
   - name: "news"
     label: "News & Stories"
-    label_singular: "News Story"
     folder: "src/content/news"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -96,7 +94,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Short Excerpt", name: "excerpt", widget: "text", hint: "Appears on the news listing page." }
+      - { label: "Short Excerpt", name: "excerpt", widget: "text" }
       - { label: "Program", name: "program", widget: "select", options: ["umoza-village", "umoza-academy", "birthing-kits", "general"], default: "general" }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Full Story", name: "body", widget: "markdown" }
