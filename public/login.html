@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — People First Foundation CMS</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #0a1f3f;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+    .container {
+      text-align: center;
+    }
+    button {
+      background: #c8963e;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #b8862c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <h1>People First Foundation</h1>
+    <p>Content Management System</p>
+    <button onclick="netlifyIdentity.open('login')">Log In / Sign Up</button>
+  </div>
+
+  <script>
+    netlifyIdentity.init();
+    netlifyIdentity.on("init", user => {
+      if (user) {
+        document.getElementById("app").innerHTML = `
+          <h2>✅ You're logged in!</h2>
+          <p><a href="/admin/" style="color:#c8963e;">Go to CMS Dashboard</a></p>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
