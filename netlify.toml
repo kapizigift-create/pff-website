@@ -3,6 +3,11 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
   from = "/.netlify/identity/*"
   to = "/.netlify/identity/:splat"
   status = 200
